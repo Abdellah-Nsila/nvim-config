@@ -9,9 +9,7 @@ local hadik = 5
 print(hadik)
 
 if true then
-    print("TODO: Push your nvim-setup-config Repo")
+	print("TODO: Push your nvim-setup-config Repo")
 end
 
 vim.keymap.set("n", "<space><space>x", "<cmd>source %<CR>")
-
-
