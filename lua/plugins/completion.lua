@@ -17,8 +17,29 @@ return {
 			-- See :h blink-cmp-config-keymap for defining your own keymap
 			keymap = { preset = 'default' },
 
+			signature = {
+				enabled = true,
+				-- OPTIONAL: open automatically when you type "("
+				auto_show = true,
+			},
+
 			appearance = {
 				nerd_font_variant = 'mono'
+			},
+
+			-- 🔥 This triggers signature help AFTER the completion inserts "()"
+			accept = {
+				auto_trigger = true, -- enable post-accept logic
+				callback = function(item)
+					-- Trigger signature help if function-like completion
+					if item.kind == vim.lsp.protocol.CompletionItemKind.Function
+						or item.kind == vim.lsp.protocol.CompletionItemKind.Method
+					then
+						vim.defer_fn(function()
+							vim.lsp.buf.signature_help()
+						end, 20)
+					end
+				end
 			},
 
 			-- (Default) Only show the documentation popup when manually triggered

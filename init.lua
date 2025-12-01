@@ -19,6 +19,8 @@ vim.keymap.set("n", "<ESC>", "<cmd>nohlsearch<CR>")
 vim.keymap.set("n", "[d", vim.diagnostic.goto_prev)
 vim.keymap.set("n", "]d", vim.diagnostic.goto_next)
 
+vim.keymap.set("n", "<space>p", "<cmd>Oil<CR>")
+
 vim.api.nvim_create_autocmd("TextYankPost", {
 	desc = "Hightlight when yanking (copying) text",
 	group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
@@ -47,3 +49,7 @@ end)
 vim.keymap.set("n", "<space>example", function()
 	vim.fn.chansend(job_id, { "ls -al\r\n" })
 end)
+
+
+
+-- vim.api.nvim_buf_set_lines()
